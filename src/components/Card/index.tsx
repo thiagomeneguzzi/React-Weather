@@ -74,7 +74,7 @@ export function Card({temperature, condition, feelsLike, localtime, city, state}
   }
 
   return (
-    <div className="bg-white rounded-xl w-full pl-4 max-w-xl border-gray-600 border-2">
+    <div className="bg-white rounded-xl w-full max-w-xl border-gray-600 border-2">
 
       <div className="flex justify-center my-4">
         <span className="text-gray-700 text-8xl font-bold">
