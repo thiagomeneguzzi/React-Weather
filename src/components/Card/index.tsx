@@ -15,7 +15,7 @@ interface Props {
 }
 
 const conditions = [
-  // {'Sol': <BsSun />},
+  {'Sol': <BsSun />},
   {'Céu limpo': <MdNightlightRound />},
   {'Parcialmente nublado': <BsCloudy />}
 ]
