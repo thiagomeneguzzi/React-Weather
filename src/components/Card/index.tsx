@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-import { BsCloudy } from 'react-icons/bs';
+import { BsSun, BsCloudy } from 'react-icons/bs';
 import { MdNightlightRound } from 'react-icons/md';
 import { TbError404 } from 'react-icons/tb';
 
