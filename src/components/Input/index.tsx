@@ -5,7 +5,7 @@ interface Props {
 
 export function Input({label,... rest}: Props) {
     return (
-        <div className="max-w-sm w-auto flex flex-col">
+        <div className=" w-auto flex flex-col">
             <label 
                 className="font-bold text-xl"
                 htmlFor={label}>{label}</label>

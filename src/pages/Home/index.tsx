@@ -13,27 +13,32 @@ export function Home() {
     const [erro, setErro]: any = useState()
 
     useEffect(() => {
-        getWeather('Florianópolis').then((resp) => {
-            setWeather(JSON.parse(resp.request.response))
-        })
+        const city = localStorage.getItem('city')!
+        if(city) {
+            setWeather(JSON.parse(city))
+        } else {
+            getWeather('Florianópolis').then((resp) => {
+                setWeather(JSON.parse(resp.request.response))
+                localStorage.setItem('city', resp.request.response)
+            })
+        }
     }, [])
 
     const searchCity = () => {
         if(city !== '') {
             getWeather(city).then((resp) => {
                 setWeather(JSON.parse(resp.request.response))
+                localStorage.setItem('city', resp.request.response)
                 setErro()
             }).catch((error) => {
-                console.log(error.response)
                 setErro(error.response.data.error.code)
-                console.log(erro)
             })
             setCity('')
         }
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full flex flex-col items-center">
             <h1 className="text-center mt-8 text-4xl font-bold"><span className="text-blue-400">Bem-vindo ao tempo,</span> no seu tempo!</h1>
             <div className="flex justify-center gap-3 my-4 text-3xl">
                 <WiDaySunny />
@@ -41,7 +46,7 @@ export function Home() {
                 <BsSnow2 />
             </div>
             
-            <div className="max-w-sm flex flex-col gap-3 mx-auto mt-10">
+            <div className="max-w-lg flex flex-col mx-4 gap-3 mt-10">
                 <Input onChange={(event: any) => setCity(event.target.value)} label={'Insira a cidade'}/>
                 { erro && <p className="bg-red-300 w-fit py-1 px-2 rounded-sm text-red-700">Cidade não encontrada</p>}
                 <Button onClick={searchCity} text={'Buscar cidade'} />
@@ -51,6 +56,8 @@ export function Home() {
                             feelsLike={weather.current.feelslike_c}
                             localtime={weather.location.localtime}
                             condition={weather.current.condition.text}
+                            wind={weather.current.wind_kph}
+                            humidity={weather.current.humidity}
                             city={weather.location.name}
                             state={weather.location.region}
                             temperature={weather.current.temp_c}/>
