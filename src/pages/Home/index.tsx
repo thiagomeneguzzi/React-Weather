@@ -10,7 +10,7 @@ export function Home() {
     const [weather, setWeather]: any = useState()
 
     useEffect(() => {
-        getWeather('São Paulo').then((resp) => {
+        getWeather('Florianópolis').then((resp) => {
             setWeather(JSON.parse(resp.request.response))
         })
     }, [])
@@ -31,7 +31,15 @@ export function Home() {
                 <Input onChange={(event: any) => setCity(event.target.value)} label={'Insira a cidade'}/>
                 <Button onClick={searchCity} text={'Buscar cidade'} />
                 {
-                    weather && <Card temperature={weather.current.temp_c}/>
+                    weather && (
+                        <Card 
+                            feelsLike={weather.current.feelslike_c}
+                            localtime={weather.location.localtime}
+                            condition={weather.current.condition.text}
+                            city={weather.location.name}
+                            state={weather.location.region}
+                            temperature={weather.current.temp_c}/>
+                    )
                 }
             </div>
         </div>
