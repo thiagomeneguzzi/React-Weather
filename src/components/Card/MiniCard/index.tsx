@@ -7,7 +7,7 @@ interface Props {
 
 export function MiniCard({ title, content, icon, symbol }: Props) {
   return (
-    <div className="bg-gray-200 flex gap-2 items-center rounded-xl w-4/5 max-w-[200px] py-2 border-gray-700 border-2 pl-2">
+    <div className="bg-gray-200 flex gap-2 items-center rounded-xl w-2/6 max-w-[200px] py-2 border-gray-700 border-2 pl-2">
       <div className="text-2xl text-gray-700">
         {icon}
       </div>
