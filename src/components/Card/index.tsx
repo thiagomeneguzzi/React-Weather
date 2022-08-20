@@ -1,8 +1,9 @@
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-import { BsCloudy, BsSun } from 'react-icons/bs';
+import { BsCloudy } from 'react-icons/bs';
 import { MdNightlightRound } from 'react-icons/md';
+import { TbError404 } from 'react-icons/tb';
 
 interface Props {
   temperature: number;
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const conditions = [
-  {'Sol': <BsSun />},
+  // {'Sol': <BsSun />},
   {'Céu limpo': <MdNightlightRound />},
   {'Parcialmente nublado': <BsCloudy />}
 ]
@@ -22,10 +23,8 @@ const conditions = [
 export function Card({temperature, condition, feelsLike, localtime, city, state}: Props) {
 
   function getConditionIcon(condition: string) {
-    console.log(condition)
     const index = conditions.findIndex(conditionItem => Object.keys(conditionItem).toString() === condition)
-    const element = Object.values(conditions[index])
-    return element
+    return index !== -1 ? Object.values(conditions[index]) : <TbError404 />
   }
 
   return (
